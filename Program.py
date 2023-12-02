@@ -13,13 +13,20 @@ def Bee_Colony_Algorithm():
     best_bees_of_each_inner_iteration = []
     best_fitnesses_of_each_inner_iteration = []
     best_fitnesses_so_far = []
-    for i in range(inner_iteration_of_algorithm):  
+    # for i in range(inner_iteration_of_algorithm):  
+    
+    start_limitation_time = time.time()
+    elapsed_limitation_time = 0
+    
+    iteration_num = 1
+    while(elapsed_limitation_time<cpu_time_limit):
 
-        # iteration_st = time.time()  # start time of iteration
+        iteration_st = time.time()  # start time of iteration
         result = open(f'{result_file_name}', 'a')    
-        # result.write(f"iteration number {i}: \n")
+        result.write(f"iteration number {iteration_num}: \n")
         currentTime = datetime.now().strftime("%H:%M:%S")
-        print(f"iteration number {i}: {currentTime}")
+        # print(f"iteration number {iteration_num}: {currentTime}")
+        iteration_num+=1;
  
         ABC = Artificial_Bee_Colony.ABC_algorithm(employed_bees_num, nK, nI, Capacity, Profits, Weights, onlooker_bees_num, max_improvement_try, pc, pm)
         if (len(population)==0):
@@ -32,21 +39,24 @@ def Bee_Colony_Algorithm():
         best_fitness_so_far = max(best_fitnesses_of_each_inner_iteration)
         best_fitnesses_so_far.append(best_fitness_so_far)
 
-        # result.write(f"best bee => data: {best_bee_of_iteration.data}, fitness: {best_fitness_of_iteration}\n")  
-        # result.write(f"best fitness so far: {best_fitness_so_far}\n")
+        result.write(f"best bee => data: {best_bee_of_iteration.data}, fitness: {best_fitness_of_iteration}\n")  
+        result.write(f"best fitness so far: {best_fitness_so_far}\n")
 
-        print(f"best fitness of iteration = {best_fitness_of_iteration}")
-        print(f"best fitness so far: {best_fitness_so_far}")
+        # print(f"best fitness of iteration = {best_fitness_of_iteration}")
+        # print(f"best fitness so far: {best_fitness_so_far}")
 
         ABC.scout_bees(population)
         
-        # iteration_et = time.time()  # end time of iteration
-        # iteration_elapsed_time = iteration_et - iteration_st
-        # result.write(f"Execution time of iteration: {iteration_elapsed_time} seconds\n \n")
+        current_limitation_time = time.time()
+        elapsed_limitation_time = current_limitation_time-start_limitation_time;
+        
+        iteration_et = time.time()  # end time of iteration
+        iteration_elapsed_time = iteration_et - iteration_st
+        result.write(f"Execution time of iteration: {iteration_elapsed_time} seconds\n \n")
         
         result.close()
     
-    return best_bees_of_each_inner_iteration, best_fitnesses_of_each_inner_iteration, best_fitnesses_so_far
+    return best_bees_of_each_inner_iteration, best_fitnesses_of_each_inner_iteration, best_fitnesses_so_far, iteration_num
 
 
 if __name__ == '__main__':
@@ -55,7 +65,7 @@ if __name__ == '__main__':
                          # this must be an even number 
     onlooker_bees_num = 100   # number of iterations in roulette wheel, that select a bee and pass it to improvement-try
     max_improvement_try = 50
-    inner_iteration_of_algorithm = 1
+    # inner_iteration_of_algorithm = 1
     pc = 0.7 # the probblity of cross-over
     pm = 2 # the probblity of mutation (pm/items)
     k_tournomet_percent = 0.1 # in amount of "k_tournomet/items", tournoment will choose, and return the best of them
@@ -63,12 +73,14 @@ if __name__ == '__main__':
     percedure_type = "Roulette Wheel"
     cross_over_type = "one_point"
     
+    cpu_time_limit = 100; # second
+    
     # file name of the datas
-    data_file_name = ".\\mknap1-Question\\01.txt"
+    data_file_name = ".\\mknap1-Question\\07.txt"
     
     # file name for save results
-    result_file_name = ".\\mknap1-Answer(try1)\\01.txt"
-    photo_name = "01"
+    result_file_name = ".\\mknap1-Answer(try1)\\07.txt"
+    photo_name = "07"
 
     # nK = number of knapstacks
     # nI = number of items
@@ -85,7 +97,8 @@ if __name__ == '__main__':
     
     st = time.time() # get the start time of all     
        
-    best_bees_of_iterations, best_fitnesses_of_iterations, best_fitnesses_so_far = Bee_Colony_Algorithm()
+    # "number of iterations" is the numbers of iterations that has been done in the limitation time
+    best_bees_of_iterations, best_fitnesses_of_iterations, best_fitnesses_so_far, number_of_iterations = Bee_Colony_Algorithm()
 
     # clearfiying the bee
     best_final_fitness = max(best_fitnesses_so_far)
@@ -96,7 +109,7 @@ if __name__ == '__main__':
             
     # writing the result
     result = open(f'{result_file_name}', 'a')
-    # result.write("------------------------ \n")
+    result.write("------------------------ \n")
     result.write("FINAL RESULT \n \n")
         
     # fitness_avg = np.average(best_fitnesses_of_iterations)
@@ -126,19 +139,20 @@ if __name__ == '__main__':
     result.write(f"Number of Employed Bees = {employed_bees_num}\n")
     result.write(f"Number of Onlooker Bees = {onlooker_bees_num}\n")
     result.write(f"Max improvement try = {max_improvement_try}\n")
-    result.write(f"Number of ABC algorithm's iterations = {inner_iteration_of_algorithm}\n")
     result.write(f"cross_over type = {cross_over_type}\n")
     result.write(f"Probblity of cross-over = {pc}\n")
     result.write(f"Probblity of mutation = {pm}\n")
     result.write(f"K tournoment percent = {k_tournomet_percent}\n")
-    result.write(f"Precedure Type = {percedure_type}")
+    result.write(f"Precedure Type = {percedure_type}\n")
+    result.write(f"Number of ABC algorithm's iterations (in the limited time) = {number_of_iterations}\n")
+    result.write(f"Limited Time = {cpu_time_limit}")
 
     print("---------------------------------")
     print(f"the best fitness of all: {best_final_fitness}")
 
     result.close()
     
-    iteration_number_list = [i for i in range(1, inner_iteration_of_algorithm+1)]
+    iteration_number_list = [i for i in range(1, number_of_iterations)]
     Diagram.diagram(iteration_number_list, best_fitnesses_of_iterations, best_fitnesses_so_far, photo_name)
     
     print()
