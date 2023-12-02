@@ -55,7 +55,7 @@ if __name__ == '__main__':
                          # this must be an even number 
     onlooker_bees_num = 100   # number of iterations in roulette wheel, that select a bee and pass it to improvement-try
     max_improvement_try = 50
-    inner_iteration_of_algorithm = 100
+    inner_iteration_of_algorithm = 1
     pc = 0.7 # the probblity of cross-over
     pm = 2 # the probblity of mutation (pm/items)
     k_tournomet_percent = 0.1 # in amount of "k_tournomet/items", tournoment will choose, and return the best of them
@@ -64,11 +64,11 @@ if __name__ == '__main__':
     cross_over_type = "one_point"
     
     # file name of the datas
-    data_file_name = ".\\mknap1-Question\\07.txt"
+    data_file_name = ".\\mknap1-Question\\01.txt"
     
     # file name for save results
-    result_file_name = ".\\mknap1-Answer(try6)\\07-4.txt"
-    photo_name = "07-4"
+    result_file_name = ".\\mknap1-Answer(try1)\\01.txt"
+    photo_name = "01"
 
     # nK = number of knapstacks
     # nI = number of items
