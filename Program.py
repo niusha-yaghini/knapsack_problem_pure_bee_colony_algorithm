@@ -25,7 +25,7 @@ def Bee_Colony_Algorithm():
         result = open(f'{result_file_name}', 'a')    
         result.write(f"iteration number {iteration_num}: \n")
         currentTime = datetime.now().strftime("%H:%M:%S")
-        # print(f"iteration number {iteration_num}: {currentTime}")
+        print(f"iteration number {iteration_num}: {currentTime}")
         iteration_num+=1;
  
         ABC = Artificial_Bee_Colony.ABC_algorithm(employed_bees_num, nK, nI, Capacity, Profits, Weights, onlooker_bees_num, max_improvement_try, pc, pm)
@@ -42,8 +42,8 @@ def Bee_Colony_Algorithm():
         result.write(f"best bee => data: {best_bee_of_iteration.data}, fitness: {best_fitness_of_iteration}\n")  
         result.write(f"best fitness so far: {best_fitness_so_far}\n")
 
-        # print(f"best fitness of iteration = {best_fitness_of_iteration}")
-        # print(f"best fitness so far: {best_fitness_so_far}")
+        print(f"best fitness of iteration = {best_fitness_of_iteration}")
+        print(f"best fitness so far: {best_fitness_so_far}")
 
         ABC.scout_bees(population)
         
@@ -73,18 +73,18 @@ if __name__ == '__main__':
     percedure_type = "Roulette Wheel"
     cross_over_type = "one_point"
     
-    cpu_time_limit = 100; # second
+    cpu_time_limit = 600; # second
     
     # file name of the datas
-    data_file_name = ".\\mknap1-Question\\07.txt"
+    data_file_name = ".\\mknapcb9\\Question\\01.txt"
     
     # file name for save results
-    result_file_name = ".\\mknap1-Answer(try1)\\07.txt"
-    photo_name = "07"
+    result_file_name = ".\\mknapcb9\\Answer\\01-02.txt"
+    photo_name = "01"
 
     # nK = number of knapstacks
     # nI = number of items
-    nK, nI, Capacity, Profits, Weights, real_answer = Reading_Data.Reading(data_file_name)
+    nK, nI, Capacity, Profits, Weights = Reading_Data.Reading(data_file_name)
     
     # getting result by bees :)
     
@@ -125,12 +125,12 @@ if __name__ == '__main__':
 
     result.write("------------------------ \n")
     result.write("COMPARE ANSWER \n \n")
-    result.write(f"real answer = {real_answer}\n")
+    # result.write(f"real answer = {real_answer}\n")
     result.write(f"my answer = {best_final_fitness} \n")
-    gap = real_answer - best_final_fitness
-    result.write(f"gap = {gap}\n")
-    gap_percent = (gap/real_answer)*100
-    result.write(f"gap percent = {gap_percent}\n \n")
+    # gap = real_answer - best_final_fitness
+    # result.write(f"gap = {gap}\n")
+    # gap_percent = (gap/real_answer)*100
+    # result.write(f"gap percent = {gap_percent}\n \n")
     # result.write("try4 gap = \n")
     # result.write("betterment than try4 = \n \n")    
 

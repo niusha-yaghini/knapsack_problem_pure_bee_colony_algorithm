@@ -24,4 +24,4 @@ to make a random valid new bee and add it to our "population"
 
 
 "scout bees":
-1- here we make brand new bees and add it to our population
+1- we go through the population and delete the first bee that we find that has the improvement_try larger than max_improvement_try and make a new one instead of that, in here we only delete one bee

@@ -27,6 +27,8 @@ class ABC_algorithm():
         # if(len(population) == 0):
         for i in range(self.employed_bees_num):
             bee = self._making_bee()
+            print(i, "i have made a bee!");
+
             population.append(bee)
             
         # we try for improvement one time for each bee, if change happens we add one to improvement-try property of that bee

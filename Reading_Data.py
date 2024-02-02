@@ -1,16 +1,29 @@
+import numpy as np
+
 def Reading(file_name):
     data = open(f"{file_name}", "r")
-    nK = int(data.readline().split(":")[1])
-    nI = int(data.readline().split(":")[1])
-    data.readlines(2)
-    Capacity = [float(x) for x in data.readline().split(" ")]
-    data.readlines(2)
-    Profits = [float(x) for x in data.readline().split(" ")]
-    data.readlines(2)
-    Weights = []
-    for i in range(nK):
-        Weights.append([float(x) for x in data.readline().split(" ")])
-    data.readlines(2)
-    real_answer = float(data.readline())    
+    
+    info = data.readline().split(" ")
+    nI = int(info[1])
+    nK = int(info[2])
+    
+    Profits = []
+    for p in range(72):
+        pro = [float(x) for x in data.readline().split(" ") if x.strip()]
+        Profits.extend(pro)
         
-    return nK, nI, Capacity, Profits, Weights, real_answer
+    Weights = []
+    for knapsack in range(nK):
+        Weight = []
+        for w in range(72):
+            wei = [float(x) for x in data.readline().split(" ") if x.strip()]
+            Weight.extend(wei)
+        Weights.append(Weight)
+                
+    Capacity = []
+    for c in range(71):
+        cap = [float(x) for x in data.readline().split(" ") if x.strip()]
+        Capacity.extend(cap)
+
+        
+    return nK, nI, Capacity, Profits, Weights
