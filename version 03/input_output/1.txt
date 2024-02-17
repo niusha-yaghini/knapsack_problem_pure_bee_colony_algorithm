@@ -1,0 +1,35 @@
+Artificial Bee Colony Algorithm on knapsack
+ 
+FINAL RESULT 
+ 
+the best final Bee => 
+data: [0. 0. 1. 1. 1. 1. 1. 1. 0. 0. 1. 1. 1. 1. 0. 1. 1. 1. 1. 0. 1. 1. 1. 1.
+ 0. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.
+ 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.
+ 0. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 0. 1. 1. 1. 1. 0. 1. 1. 1. 1. 1. 1. 1.
+ 1. 1. 1. 1.], fitness: 69771.0 
+the average fitness of all: 60462.55759907251 
+ 
+Execution time of all: 100.00552153587341 seconds 
+ 
+------------------------ 
+COMPARE ANSWER 
+ 
+real answer = 
+my answer = 69771.0 
+------------------------ 
+PARAMETERS 
+ 
+Number of Employed Bees = 10
+Number of Onlooker Bees = 10
+Max improvement try = 2
+cross_over type = one_point
+probability of cross-over = 0.7
+probability of mutation = 2
+K tournoment percent = 0.1
+Precedure Type = Roulette Wheel
+Number of ABC algorithm's iterations = 18977
+Limited Time = 100Artificial Bee Colony Algorithm on knapsack
+ 
+Artificial Bee Colony Algorithm on knapsack
+ 

@@ -39,7 +39,7 @@ def Bee_Colony_Algorithm(run_id, cpu_time_limit, employed_bees_num, onlooker_bee
                 onlooker_bees_num, max_improvement_try, pc, pm, k_tournomet_percent, percedure_type,
                 cross_over_type)
         
-        ABC.employed_bees(population)
+        ABC.employed_bees(population)            
         ABC.onlooker_bees(population)
         best_bee_of_iteration, best_fitness_of_iteration = ABC.finding_best_bee(population)
         

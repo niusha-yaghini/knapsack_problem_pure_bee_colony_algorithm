@@ -34,6 +34,9 @@ class ABC_algorithm():
                 # print(i, "i have made a bee!");
                 population.append(bee)
             
+        for item in population:
+            print(self._feasiblity_check(item))
+
         # we try for improvement one time for each bee, if change happens we add one to improvement-try property of that bee
         for bee in population:
             change_flag = self._try_for_improvement(population, bee)
@@ -116,9 +119,9 @@ class ABC_algorithm():
         
         # doing the mutation on selected bee
         self._mutation(new_bee) 
-        
+                
         # checking the feasiblity and improvement
-        if(self._feasiblity_check and self._improvement_check(bee, new_bee)):
+        if(self._feasiblity_check(new_bee) and self._improvement_check(bee, new_bee)):
             change_flag = True     
             bee.data = new_bee.data
 
